@@ -1,0 +1,19 @@
+<% if flash[:notice] %>
+  <div class="alert alert-success mt-5" role="alert">
+    <strong>Success</strong> -  <%= flash[:notice] %>
+  </div>
+<% end %>
+<p>
+  <%= @movie.title %>
+</p>
+<p>
+  <%= @movie.contents %>
+</p>
+<p>
+  <%= video_tag(@movie.movie.url, :controls => true)  %>
+</p>
+<p>
+  <%= @movie.tag %>
+</p>
+<%= link_to "詳細", "/movie/show/#{@movie.id}" %>
+<hr>

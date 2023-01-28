@@ -16,4 +16,9 @@
   <p>
     <%= movie.tag %>
   </p>
+  <%= link_to "詳細", "/movie/show/#{movie.id}" %>
+  <%= link_to "編集", "/movie/edit/#{movie.id}" %>
+  <%# GETではなくdeleteメソッドで呼び出すと宣言 %>
+  <%= link_to "削除", "/movie/delete/#{movie.id}", data: { "turbo-method": :delete } %>
+  <hr>
 <% end %>
