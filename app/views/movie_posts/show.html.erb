@@ -1,19 +1,25 @@
-<% if flash[:notice] %>
-  <div class="alert alert-success mt-5" role="alert">
-    <strong>Success</strong> -  <%= flash[:notice] %>
+<div class="container">
+  <% if flash[:notice] %>
+    <div class="alert alert-success mt-5" role="alert">
+      <strong>成功！</strong> -  <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <div class="mt-5">
+    <%= video_tag(@movie.movie.url, :controls => true, class: "img-fluid")  %>
   </div>
-<% end %>
-<p>
-  <%= @movie.title %>
-</p>
-<p>
-  <%= @movie.contents %>
-</p>
-<p>
-  <%= video_tag(@movie.movie.url, :controls => true)  %>
-</p>
-<p>
-  <%= @movie.tag %>
-</p>
-<%= link_to "詳細", "/movie/show/#{@movie.id}" %>
-<hr>
+  <div class="text-light mt-2 mb-5">
+    <h4><%= @movie.title %></h4>
+    <p class="text-light mt-4">
+      <%= @movie.contents %>
+      <br>
+      <label class="text-primary mt-2">#<%= @movie.tag %></label>
+      <br>
+      <small class="text-light"><%= time_ago_in_words(@movie.created_at) %>前</small>
+    </p>
+    <p class="mt-4 d-flex">
+      <%= link_to "編集", "/movie/edit/#{@movie.id}", class: "btn btn-primary px-5" %>
+      <%# ! GETではなくdeleteメソッドで呼び出すと宣言 %>
+      <%= button_to "削除", "/movie/delete/#{@movie.id}", class: "btn btn-danger px-5", method: :delete %>
+    </p>
+  </div>
+</div>

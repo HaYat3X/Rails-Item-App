@@ -1,24 +1,33 @@
-<% if flash[:notice] %>
-  <div class="alert alert-success mt-5" role="alert">
-    <strong>Success</strong> -  <%= flash[:notice] %>
+<div class="container">
+  <% if flash[:notice] %>
+    <div class="alert alert-success mt-5" role="alert">
+      <strong>成功！</strong> -  <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <div class="mt-5 mb-5">
+    <% @movies.each do |movie| %>
+      <div class="card mb-3 border border-dark" style="background-color: #3b4045;">
+        <div class="row g-0">
+          <div class="col-md-5">
+            <%= video_tag(movie.movie.url, :controls => true, class: "img-fluid") %>
+          </div>
+          <div class="col-md-7 px-3 mt-3" style="background-color: #3b4045;">
+            <div class="card-body">
+              <h4 class="card-title text-light"><%= movie.title %></h4>
+              <p class="card-text text-light mt-4">
+                <%= movie.contents %>
+                <br>
+                <label class="text-primary mt-2">#<%= movie.tag %></label>
+                <br>
+                <small class="text-light"><%= time_ago_in_words(movie.created_at) %>前</small>
+              </p>
+              <p class="mt-4">
+                <%= link_to "動画へ", "/movie/show/#{movie.id}", class: "btn btn-success px-4" %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
-<% @movies.each do |movie| %>
-  <p>
-    <%= movie.title %>
-  </p>
-  <p>
-    <%= movie.contents %>
-  </p>
-  <p>
-    <%= video_tag(movie.movie.url, :controls => true)  %>
-  </p>
-  <p>
-    <%= movie.tag %>
-  </p>
-  <%= link_to "詳細", "/movie/show/#{movie.id}" %>
-  <%= link_to "編集", "/movie/edit/#{movie.id}" %>
-  <%# GETではなくdeleteメソッドで呼び出すと宣言 %>
-  <%= link_to "削除", "/movie/delete/#{movie.id}", data: { "turbo-method": :delete } %>
-  <hr>
-<% end %>
+</div>

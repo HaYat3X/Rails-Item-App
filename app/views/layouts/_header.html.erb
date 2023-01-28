@@ -1,0 +1,18 @@
+<%# ! テンプレートには`_`をつける %>
+<nav class="navbar bg-dark">
+  <div class="container py-2">
+    <a class="navbar-brand text-light" href="/movie">
+      <img src="/assets/unnamed (2).png" alt="ブランド" width="30" height="30" class="d-inline-block align-text-top">
+      Youtube
+    </a>
+    <div class="text-center">
+      <%= form_with(model: @movie, url: "/movie/create", local: true, class: "d-flex") do |form| %>
+        <%= form.text_field :keyword, placeholder: "タグで検索...", class: "form-control me-2", style: "width: 400px;" %>
+        <%= form.button "検索", class: "btn btn-outline-success flex-shrink-0" %>
+      <% end %>
+    </div>
+    <div class="text-end">
+      <%= link_to "新規アップロード", "/movie/new", class: "btn btn-primary px-4" %>
+    </div>
+  </div>
+</nav>

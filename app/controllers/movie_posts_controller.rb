@@ -11,9 +11,9 @@ class MoviePostsController < ApplicationController
     @movie = Movie.new(movies_params)
 
     if @movie.save
-      redirect_to "/movie", notice: "投稿に成功"
+      redirect_to "/movie", notice: "正常にアップロードされました！"
     else
-      render :new, status: :unprocessable_entity
+      render "/movie/new", status: :unprocessable_entity
     end
   end
 
@@ -31,9 +31,9 @@ class MoviePostsController < ApplicationController
     @movie = Movie.find(params[:id])
 
     if @movie.update(movies_params)
-      redirect_to "/movie/show/#{@movie.id}", notice: "更新に成功"
+      redirect_to "/movie/show/#{@movie.id}", notice: "内容の更新が正常に行われました！"
     else
-      render :edit, status: :unprocessable_entity
+      render "/movie/new", status: :unprocessable_entity
     end
   end
 
@@ -41,9 +41,9 @@ class MoviePostsController < ApplicationController
     @movie = Movie.find(params[:id])
 
     if @movie.destroy
-      redirect_to "/movie", notice: "削除に成功"
+      redirect_to "/movie", notice: "動画の削除が正常に行われました！"
     else
-      redirect_to "/movie", error: "削除に失敗"
+      redirect_to "/movie", error: "動画の削除の際にエラーが発生しました！"
     end
   end
 
