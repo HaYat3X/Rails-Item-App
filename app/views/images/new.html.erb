@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <%# フラッシュメッセージの表示 %>
+    <% if flash[:notice] %>
+      <div class="alert alert-success mt-5" role="alert">
+        <strong>Success</strong> -  <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <% if @image.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@image.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+          <% @image.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= form_with(model: @image, url: "/new", local: true) do |form| %>
+      <%# バリデーションの表示 %>
+      <div>
+        <%= form.label :title, style: "display: block" %>
+        <%= form.text_field :title %>
+      </div>
+      <div>
+        <%= form.label :contents, style: "display: block" %>
+        <%= form.text_field :contents %>
+      </div>
+      <div class="field">
+        <%= form.label :image %>
+        <%= form.file_field :image %>
+      </div>
+      <div class="field">
+        <%= form.label :tag %>
+        <%= form.text_field :tag %>
+      </div>
+      <div>
+        <%= form.submit %>
+      </div>
+    <% end %>
+  </body>
+</html>

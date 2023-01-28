@@ -1,0 +1,19 @@
+<% if flash[:notice] %>
+  <div class="alert alert-success mt-5" role="alert">
+    <strong>Success</strong> -  <%= flash[:notice] %>
+  </div>
+<% end %>
+<% @movies.each do |movie| %>
+  <p>
+    <%= movie.title %>
+  </p>
+  <p>
+    <%= movie.contents %>
+  </p>
+  <p>
+    <%= video_tag(movie.movie.url, :controls => true)  %>
+  </p>
+  <p>
+    <%= movie.tag %>
+  </p>
+<% end %>

@@ -7,7 +7,12 @@
     <title>Document</title>
   </head>
   <body>
-    <%# <p style="color: green"><%= # notice %></p> 
+    <%# フラッシュメッセージの表示 %>
+    <% if flash[:notice] %>
+      <div class="alert alert-success mt-5" role="alert">
+        <strong>Success</strong> -  <%= flash[:notice] %>
+      </div>
+    <% end %>
     <h1>Users</h1>
     <div id="users">
       <%= @images.each do |image| %>
@@ -21,7 +26,10 @@
           <%= image.tag %>
         </p>
         <p>
-          <%= image_tag(image.image.url) %>
+          <%# 画像があれば画像表示 %>
+          <% if image.image.url %>
+            <%= image_tag(image.image.url) %>
+          <% end %>
         </p>
       <% end %>
     </div>
