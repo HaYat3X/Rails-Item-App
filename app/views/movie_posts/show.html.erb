@@ -14,7 +14,7 @@
       <br>
       <label class="text-primary mt-2">#<%= @movie.tag %></label>
       <br>
-      <small class="text-light"><%= time_ago_in_words(@movie.created_at) %>前</small>
+      <small class="text-light">最終更新：<%= time_ago_in_words(@movie.updated_at) %>前</small>
     </p>
     <p class="mt-4 d-flex">
       <%= link_to "編集", "/movie/edit/#{@movie.id}", class: "btn btn-primary px-5" %>

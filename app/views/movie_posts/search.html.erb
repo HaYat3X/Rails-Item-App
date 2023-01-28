@@ -10,7 +10,7 @@
     </div>
   <% end %>
   <div class="mt-5 mb-5">
-    <% @movies.each do |movie| %>
+    <% @search_movies.each do |movie| %>
       <div class="card mb-3 border border-dark" style="background-color: #3b4045;">
         <div class="row g-0">
           <div class="col-md-5">
@@ -24,7 +24,7 @@
                 <br>
                 <label class="text-primary mt-2">#<%= movie.tag %></label>
                 <br>
-                <small class="text-light">最終更新：<%= time_ago_in_words(movie.updated_at) %>前</small>
+                <small class="text-light"><%= time_ago_in_words(movie.created_at) %>前</small>
               </p>
               <p class="mt-4">
                 <%= link_to "動画へ", "/movie/show/#{movie.id}", class: "btn btn-success px-4" %>

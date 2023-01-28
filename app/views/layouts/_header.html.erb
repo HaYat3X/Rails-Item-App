@@ -6,7 +6,7 @@
       Youtube
     </a>
     <div class="text-center">
-      <%= form_with(model: @movie, url: "/movie/create", local: true, class: "d-flex") do |form| %>
+      <%= form_with(url: "/movie/search", local: true, class: "d-flex") do |form| %>
         <%= form.text_field :keyword, placeholder: "タグで検索...", class: "form-control me-2", style: "width: 400px;" %>
         <%= form.button "検索", class: "btn btn-outline-success flex-shrink-0" %>
       <% end %>
